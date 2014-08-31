@@ -1,0 +1,17 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<h1>{{ enc.aencuesta.nombre }}</h1>
+
+
+<form action="" method="post">
+{% csrf_token %}
+{% for preg in enc.aencuesta.pregunta_set.all %}
+{{preg.texto}}
+<br/>
+{% endfor %}
+<input type="submit" value="Guardar" />
+</form>
+
+{% endblock %}

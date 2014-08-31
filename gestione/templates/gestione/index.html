@@ -1,0 +1,10 @@
+{% extends "base.html" %}
+
+{% block content %}
+<ul>
+{%for staffpos in roots_staffpos %}
+    {%include "gestione/stafftree_view_template.html" %}
+{%endfor%}
+</ul>
+
+{% endblock %}

@@ -1,0 +1,19 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<h1>{{ aenc.nombre }}</h1>
+
+<a href="/gestione/doencuesta/0/{{Capturista.objects.get(user_id=user.id)}}/{{aenc.id}}">Siguiente Persona</a>
+<br/><br/>
+
+<form action="" method="post">
+{% csrf_token %}
+{% for preg in aenc.pregunta_set.all %}
+{{preg.texto}}
+<br/>
+{% endfor %}
+<input type="submit" value="Guardar" />
+</form>
+
+{% endblock %}

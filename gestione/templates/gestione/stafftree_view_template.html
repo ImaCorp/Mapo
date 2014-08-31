@@ -1,0 +1,21 @@
+{% load gestione_extras %}
+
+<li> {{staffpos.desc}}
+    {%if user|has_group:"GestionStaff" or user|has_group:"GestionAdmin"%}
+            <a href='/admin/gestione/staffposicion/{{staffpos.id}}/'>Editar</a> {{staffpos.capturistas.count}} capt
+    {%endif%}
+
+    {%for aen in staffpos.activaencuesta_set.all %}
+    [<a href='/gestione/encuesta/{{aen.id}}/'>{{aen.encuesta.nombre}}</a>]
+    {%endfor%}
+
+    {%if user|has_group:"GestionStaff" or user|has_group:"GestionAdmin" and staffpos.staffposicion_set.count %}
+        <ul>
+         {%for sp in staffpos.staffposicion_set.all %}
+              {%with staffpos=sp template_name="gestione/stafftree_view_template.html" %}
+                   {%include template_name%}
+              {%endwith%}
+         {%endfor%}
+         </ul>
+    {%endif%}
+</li>
